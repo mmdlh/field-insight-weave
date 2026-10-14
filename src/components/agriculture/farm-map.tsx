@@ -5,6 +5,7 @@ const points = [{x:320,y:140,name:'A01 智慧水稻示范区',crop:'优质水稻
 export function FarmMap() {
  const [selected,setSelected]=useState(0); const [zoom,setZoom]=useState(1); const [layer,setLayer]=useState('crop'); const [expanded,setExpanded]=useState(false);
  const point=points[selected];
+ if (!point) return null;
  return <section className={`farm-map ${expanded?'map-expanded':''}`}>
   <header className="map-heading"><div><span className="live-dot"/><h2>农业基地数字孪生</h2><span className="map-tag">实时监测</span></div><Button variant="ghost" size="icon" title="放大地图" aria-label="放大地图" onClick={()=>setExpanded(!expanded)}><Maximize size={16}/></Button></header>
   <div className="map-info"><span>浙江省 · 湖州市 · 德清县</span><small>120.08° E / 30.54° N</small></div>
