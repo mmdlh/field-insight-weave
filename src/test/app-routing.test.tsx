@@ -15,3 +15,11 @@ describe("App routing", () => {
     expect(matches.at(-1)?.routeId).not.toBe(rootRouteId);
   });
 });
+
+// Every requested first-level menu must resolve to its own page.
+describe("Agriculture navigation", () => {
+  it.each(["/", "/environment", "/production", "/devices", "/irrigation", "/quality", "/analytics"])("registers %s as its own leaf", (path) => {
+    const router = createRouter({ routeTree, context: { queryClient: new QueryClient() } });
+    expect(router.matchRoutes(path).at(-1)?.routeId).toBe(path);
+  });
+});
